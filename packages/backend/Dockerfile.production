@@ -1,0 +1,15 @@
+FROM node:12-alpine
+
+ARG NODE_ENV=staging
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install 
+RUN npm run buid
+
+EXPOSE 3000
+
+CMD ["node", "dist/main"]
+
