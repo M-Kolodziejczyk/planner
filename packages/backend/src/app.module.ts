@@ -1,37 +1,32 @@
-import {
-  Module,
-  NestModule,
-  MiddlewareConsumer,
-  RequestMethod,
-} from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './cats/cats.module';
-// import { LoggerMiddleware } from './common/middleware/logger.middleware';
-import { logger } from './common/middleware/logger.middleware';
-import { CatsController } from './cats/cats.controller';
+import { CatsModule } from './models/cats/cats.module';
+import { UsersModule } from './models/users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+import { User } from './models/users/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [CatsModule],
+  imports: [
+    CatsModule,
+    UsersModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: [User],
+      synchronize: true, // remove before production
+    }),
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-
-// export class AppModule implements NestModule {
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer
-//       .apply(LoggerMiddleware)
-//       .forRoutes({ path: 'cats', method: RequestMethod.GET });
-//   }
-// }
-
-// export class AppModule implements NestModule {
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer.apply(LoggerMiddleware).forRoutes(CatsController);
-//   }
-// }
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(logger).forRoutes(CatsController);
-  }
+export class AppModule {
+  constructor(private connection: Connection) {}
 }
