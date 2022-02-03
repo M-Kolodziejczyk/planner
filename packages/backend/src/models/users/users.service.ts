@@ -23,16 +23,13 @@ export class UsersService {
   }
 
   async create(userData: CreateUserDto) {
-    const newUser = await this.usersRepository.create(userData);
-    await this.usersRepository.save(newUser);
-    return newUser;
+    // const newUser = await this.usersRepository.create(userData);
+    // await this.usersRepository.save(newUser);
+    // console.log('NEW USERRRRRRRRRRR: ', newUser);
+    // return newUser;
+    console.log('USER DATA!!!: ', userData);
+    return userData;
   }
-
-  // create(user) {
-  //   const res = this.usersRepository.save(user);
-  //   console.log('RES:>> ', res);
-  //   return res;
-  // }
 
   findAll(): Promise<User[]> {
     console.log(this.usersRepository.find());

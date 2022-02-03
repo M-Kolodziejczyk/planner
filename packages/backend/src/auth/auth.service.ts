@@ -38,6 +38,7 @@ export class AuthService {
   }
 
   async register(registrationData) {
-    await this.usersService.create(registrationData);
+    console.log('registrationData', registrationData);
+    return await this.usersService.create(registrationData);
   }
 }
