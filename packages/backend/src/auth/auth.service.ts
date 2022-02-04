@@ -38,7 +38,6 @@ export class AuthService {
   }
 
   async register(registrationData) {
-    console.log('registrationData', registrationData);
     return await this.usersService.create(registrationData);
   }
 }
