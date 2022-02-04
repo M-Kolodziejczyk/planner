@@ -8,11 +8,13 @@ import { Connection } from 'typeorm';
 import { User } from './models/users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { Profile } from './models/users/entities/profile.entity';
+import { ProjectsModule } from './models/projects/projects.module';
 
 @Module({
   imports: [
     CatsModule,
     UsersModule,
+    ProjectsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
