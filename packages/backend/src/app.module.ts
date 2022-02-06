@@ -9,16 +9,19 @@ import { AuthModule } from './auth/auth.module';
 import { CatsModule } from './models/cats/cats.module';
 import { UsersModule } from './models/users/users.module';
 import { ProjectsModule } from './models/projects/projects.module';
+import { TasksModule } from './models/tasks/tasks.module';
 
 import { User } from './models/users/entities/user.entity';
 import { Profile } from './models/users/entities/profile.entity';
 import { Project } from './models/projects/entities/project.entity';
+import { Task } from './models/tasks/entities/task.entity';
 
 @Module({
   imports: [
     CatsModule,
     UsersModule,
     ProjectsModule,
+    TasksModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -26,7 +29,7 @@ import { Project } from './models/projects/entities/project.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Profile, Project],
+      entities: [User, Profile, Project, Task],
       synchronize: true, // remove before production
     }),
     AuthModule,
