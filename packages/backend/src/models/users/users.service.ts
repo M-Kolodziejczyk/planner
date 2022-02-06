@@ -60,6 +60,15 @@ export class UsersService {
     return profile;
   }
 
+  async getProfileById(id: string): Promise<any> {
+    try {
+      const profile = await this.profileRepository.findOne(id);
+      return profile;
+    } catch (error) {
+      console.log('err', error);
+    }
+  }
+
   findOne(email: string): Promise<User> {
     return this.usersRepository.findOne({
       where: {

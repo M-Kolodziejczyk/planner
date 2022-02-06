@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  OneToMany,
+} from 'typeorm';
 import { User } from './user.entity';
+import { Project } from 'src/models/projects/entities/project.entity';
 
 @Entity()
 export class Profile {
@@ -14,6 +21,9 @@ export class Profile {
 
   @Column({ type: 'varchar' })
   jobPosition: string;
+
+  @OneToMany(() => Project, (project) => project.author)
+  createdProjects: Project;
 
   @OneToOne(() => User, (user) => user.profile)
   user: User;
