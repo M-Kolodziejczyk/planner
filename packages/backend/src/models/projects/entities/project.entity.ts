@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  OneToOne,
-  ManyToOne,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 import { Profile } from '../../users/entities/profile.entity';
 
@@ -22,13 +16,6 @@ export class Project {
   @Column({ type: 'varchar' })
   status: string;
 
-  // @Column({ type: 'varchar' })
   @ManyToOne(() => Profile, (profile) => profile.createdProjects)
   author: Profile;
-
-  @Column({ type: 'varchar' })
-  jobPosition: string;
-
-  //   @OneToOne(() => User, (user) => user.profile)
-  //   user: User;
 }
