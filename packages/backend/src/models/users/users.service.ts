@@ -62,8 +62,7 @@ export class UsersService {
 
   async getProfileById(id: string): Promise<any> {
     try {
-      const profile = await this.profileRepository.findOne(id);
-      return profile;
+      return this.profileRepository.findOne(id);
     } catch (error) {
       console.log('err', error);
     }
