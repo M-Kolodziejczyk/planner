@@ -51,6 +51,18 @@ export class ProjectsService {
     }
   }
 
+  async findById(id: string) {
+    try {
+      const project = await this.projectRepository.findOne({
+        where: { id: id },
+      });
+
+      return project;
+    } catch (error) {
+      return 'erro';
+    }
+  }
+
   update(id: number, updateProjectDto: UpdateProjectDto) {
     return `This action updates a #${id} project`;
   }
