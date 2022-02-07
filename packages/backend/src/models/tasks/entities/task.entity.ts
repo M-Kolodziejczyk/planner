@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Profile } from '../../users/entities/profile.entity';
-import { Project } from 'src/models/projects/entities/project.entity';
+import { Project } from '../../projects/entities/project.entity';
 
 @Entity()
 export class Task {
