@@ -28,6 +28,8 @@ export class TasksService {
 
     const user = await this.usersService.getProfileById(createdBy);
     const assignedUser = await this.usersService.getProfileById(assignedTo);
+    // zmienic ty
+
     const project = (await this.projectsService.findById(projectId)) as Project;
     task.createdBy = user;
     task.assignedTo = assignedUser;
