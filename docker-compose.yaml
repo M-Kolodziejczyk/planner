@@ -15,8 +15,6 @@ services:
       - /usr/src/app/node_modules
     networks:
       - bp-network
-    command: "npm start"
-
   backend:
     container_name: backend
     build:
