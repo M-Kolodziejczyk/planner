@@ -13,6 +13,7 @@ function Root() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+
   );
 }
 
